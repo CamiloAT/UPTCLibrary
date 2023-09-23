@@ -1,11 +1,11 @@
 package co.edu.uptc.model;
 
 public class NodeAVL {
-	private int ISBN;
+	int ISBN;
 	int altura;
 	NodeAVL left;
 	NodeAVL right;
-	private Book book;
+	Book book;
 
 	public NodeAVL(Book book) {
 		this.book = book;

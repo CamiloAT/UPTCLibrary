@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class TreeAVL {
 	private NodeAVL root;
 	private ArrayList<String> sedes;
+	private ArrayList<Book> books;
 
 	public TreeAVL() {
 		fillSedes();
@@ -104,6 +105,49 @@ public class TreeAVL {
 	}
 
 	/***************************************************************************/
+	/****************************** BUSQUEDA **********************************/
+	/***************************************************************************/
+	
+	public Book searchByISBN(int ISBN) {
+		return this.SearchOnAVL(root, ISBN);
+	}
+
+	public ArrayList<Book> seacrhByName(String tittle){
+		ArrayList<Book> localBooks = this.getPreOrder();
+		ArrayList<Book> output = new ArrayList<>();
+		for (Book book : localBooks) {
+			if (tittle.equalsIgnoreCase(book.getTittle())) {
+				output.add(book);
+			}
+		}
+		return output;
+	}
+	
+	public ArrayList<Book> searchBySede(String sede){
+		ArrayList<Book> localBooks = this.getPreOrder();
+		ArrayList<Book> output = new ArrayList<>();
+		for (Book book : localBooks) {
+			if (sede.equals(book.getSede())) {
+				output.add(book);
+			}
+		}
+		return output;
+	}
+	
+	private Book SearchOnAVL(NodeAVL nodoActual, int searchISBN) {
+		Book output = new Book();
+		if (nodoActual == null) {
+			output = null;
+		}else if (searchISBN == nodoActual.ISBN) {
+			output = nodoActual.book;
+		}else if (searchISBN < nodoActual.ISBN) {
+			output = SearchOnAVL(nodoActual.left, searchISBN);
+		}else {
+			output = SearchOnAVL(nodoActual.right, searchISBN);
+		}
+		return output;
+	}
+	/***************************************************************************/
 	/****************************** ROTACIONES *********************************/
 	/***************************************************************************/
 
@@ -143,6 +187,19 @@ public class TreeAVL {
 	/****************************** AUXILIARES *********************************/
 	/***************************************************************************/
 
+	public ArrayList<Book> getPreOrder() {
+		this.preOrder(this.root);
+		return this.books;
+    }
+	
+	public void preOrder(NodeAVL node) {
+        if (node != null) {
+            this.books.add(node.book);
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+    }
+	
 	// Obtiene el peso de un arbol dado
 	private int getAltura(NodeAVL nodoActual) {
 		if (nodoActual == null) {

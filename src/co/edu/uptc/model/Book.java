@@ -1,6 +1,7 @@
 package co.edu.uptc.model;
 
 public class Book {
+	
 	private String tittle;
 	private int ISBN;
 	private String volume;
@@ -15,6 +16,9 @@ public class Book {
 		this.editorial = editorial;
 		this.sede = sede;
 		this.author = author;
+	}
+	
+	public Book() {
 	}
 
 	public String getTittle() {
@@ -64,5 +68,4 @@ public class Book {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-
 }
