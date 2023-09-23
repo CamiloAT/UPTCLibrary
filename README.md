@@ -4,3 +4,4 @@
 <h1 align="center"> Este grupo esta integrado por los estudiantes:</h1>
 <h2 align="center"> <em>Camilo Andres Arias Tenjo - 202210549</em> </h2>
 <h2 align="center"> <em>Juan Jose Albornoz Velasco- 202213154</em> </h2>
+<h2 align="center"> <em>Karen Juliana Peña Suarez- 202212066</em> </h2>
