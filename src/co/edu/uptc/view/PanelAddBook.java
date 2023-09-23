@@ -20,7 +20,6 @@ public class PanelAddBook extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel tittle;
-	private JLabel iconHeader;
 	private JPanel panelInfoAuthor;
 	private ButtonRound btnAdd;
 	private JLabel lblSede;
@@ -61,16 +60,17 @@ public class PanelAddBook extends JPanel {
 		this.add(panelHeader);
 		panelHeader.setLayout(null);
 
-		iconHeader = new JLabel("Icon");
-		iconHeader.setBackground(UIManager.getColor("Button.highlight"));
-		iconHeader.setBounds(10, 10, 143, 85);
-		panelHeader.add(iconHeader);
-
-		lblBiblioteca = new JLabel("Biblioteca");
+		lblBiblioteca = new JLabel("Biblioteca UPTC");
 		lblBiblioteca.setForeground(new Color(255, 255, 255));
 		lblBiblioteca.setFont(new Font("Forte", Font.PLAIN, 30));
-		lblBiblioteca.setBounds(603, 53, 158, 42);
+		lblBiblioteca.setBounds(514, 34, 245, 42);
 		panelHeader.add(lblBiblioteca);
+		
+		ButtonRound buttonBack = new ButtonRound("Eliminar", new Color(1, 152, 205), (String) null, new Dimension(238, 36));
+		buttonBack.setText("");
+		buttonBack.setActionCommand("back");
+		buttonBack.setBounds(44, 19, 99, 76);
+		panelHeader.add(buttonBack);
 
 		Panel panelInfoBook = new Panel();
 		panelInfoBook.setBackground(new Color(255, 255, 255));
