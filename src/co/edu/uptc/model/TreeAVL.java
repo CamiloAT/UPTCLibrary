@@ -13,6 +13,7 @@ public class TreeAVL {
 
 	public void fillSedes() {
 		sedes = new ArrayList<>();
+		sedes.add("Ninguno");
 		sedes.add("Tunja, Campus: Central Jorge Palacios Preciado");
 		sedes.add("Tunja, Campus: Facultad de medicina");
 		sedes.add("Tunja, Campus: Facultad de estudios a distancia");
@@ -29,7 +30,6 @@ public class TreeAVL {
 		sedes.add("Chiquinquira, Campus: Facultad seccional Chiquinquira ");
 		sedes.add("Chiquinquira, Campus: Facultad de estudios a distancia");
 		sedes.add("Sogamoso, Campus: Facultad Seccional Sogamoso");
-
 	}
 
 	public void clearAll() {
@@ -90,10 +90,11 @@ public class TreeAVL {
 	}
 
 	public Book searchByISBN(int ISBN) {
-		return this.SearchOnAVL(root, ISBN);
+		return this.searchOnAVL(root, ISBN);
 	}
 
-	public ArrayList<Book> seacrhByName(String tittle) {
+	public ArrayList<Book> searchByName(String tittle) {
+		books = new ArrayList<>();
 		ArrayList<Book> localBooks = this.getPreOrder();
 		ArrayList<Book> output = new ArrayList<>();
 		for (Book book : localBooks) {
@@ -105,6 +106,7 @@ public class TreeAVL {
 	}
 
 	public ArrayList<Book> searchBySede(String sede) {
+		books = new ArrayList<>();
 		ArrayList<Book> localBooks = this.getPreOrder();
 		ArrayList<Book> output = new ArrayList<>();
 		for (Book book : localBooks) {
@@ -115,22 +117,23 @@ public class TreeAVL {
 		return output;
 	}
 
-	private Book SearchOnAVL(NodeAVL nodoActual, int searchISBN) {
+	private Book searchOnAVL(NodeAVL nodoActual, int searchISBN) {
 		Book output = new Book();
 		if (nodoActual == null) {
 			output = null;
 		} else if (searchISBN == nodoActual.ISBN) {
 			output = nodoActual.book;
 		} else if (searchISBN < nodoActual.ISBN) {
-			output = SearchOnAVL(nodoActual.left, searchISBN);
+			output = searchOnAVL(nodoActual.left, searchISBN);
 		} else {
-			output = SearchOnAVL(nodoActual.right, searchISBN);
+			output = searchOnAVL(nodoActual.right, searchISBN);
 		}
 		return output;
 	}
 
 	public ArrayList<Book> listAllBooks() {
-		return this.books;
+		books = new ArrayList<>();
+		return this.getPreOrder();
 	}
 
 	public ArrayList<Book> listBooksBySede(String sede) {
@@ -258,4 +261,7 @@ public class TreeAVL {
 		return current;
 	}
 
+	public ArrayList<String> getSedes() {
+		return sedes;
+	}
 }
