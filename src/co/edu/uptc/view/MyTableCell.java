@@ -29,7 +29,7 @@ public class MyTableCell extends DefaultTableCellRenderer{
 		if(type.equals("header")) {
 			this.setHorizontalAlignment( JLabel.CENTER );
 			this.setText((String) value );
-			this.setBackground(Color.WHITE);
+			this.setBackground(new Color(205, 228, 238));
 			this.setBorder(new MatteBorder(2, 2, 2, 2, new Color(1, 152, 205, 255)));
 			this.setFont(new Font("Forte", Font.ITALIC, 23));   
 			this.setForeground(new Color(1, 152, 205, 255));

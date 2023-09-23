@@ -120,7 +120,7 @@ public class SearchPanel extends JPanel {
 		searchTable = new MyTable(null, tittles,5);
 		scrollPanel = new JScrollPane(searchTable);
 		scrollPanel.getVerticalScrollBar().setUI(new MyScroll());
-		scrollPanel.setBounds(10, 10, 800, 282);
+		scrollPanel.setBounds(10, 10, 790, 252);
 		panel_2.add(scrollPanel);
 	}
 	
@@ -145,6 +145,9 @@ public class SearchPanel extends JPanel {
 	}
 	
 	public void fillTable(ArrayList<Book> books){
+		tableModel = (DefaultTableModel) searchTable.getModel();
+		tableModel.setRowCount(0);
+		searchTable.repaint();
 		for (int i = 0; i < books.size(); i++) {
 			Book book = books.get(i);
 			this.addRow(book);
@@ -152,7 +155,6 @@ public class SearchPanel extends JPanel {
 	}
 	
 	public void addRow(Book book) {
-		tableModel = (DefaultTableModel) searchTable.getModel();
 		tableModel.addRow(new Object[] {""+book.getISBN(), book.getTittle(), ""+book.getSede(), ""+book.getVolume(), ""+book.getAuthor()});
 	}
 }

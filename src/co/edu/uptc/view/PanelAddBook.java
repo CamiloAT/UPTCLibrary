@@ -11,6 +11,7 @@ import java.awt.Panel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.UIManager;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
@@ -68,7 +69,9 @@ public class PanelAddBook extends JPanel {
 		
 		ButtonRound buttonBack = new ButtonRound("Eliminar", new Color(1, 152, 205), (String) null, new Dimension(238, 36));
 		buttonBack.setText("");
+		buttonBack.setIcon(new ImageIcon("resource/libro-abierto.png"));
 		buttonBack.setActionCommand("back");
+		buttonBack.addActionListener(listener);
 		buttonBack.setBounds(44, 19, 99, 76);
 		panelHeader.add(buttonBack);
 

@@ -102,7 +102,7 @@ public class ListPanel extends JPanel {
 		listTable = new MyTable(null, tittles,5);
 		scrollPanel = new JScrollPane(listTable);
 		scrollPanel.getVerticalScrollBar().setUI(new MyScroll());
-		scrollPanel.setBounds(10, 10, 800, 352);
+		scrollPanel.setBounds(10, 10, 790, 312);
 		panel_1_1.add(scrollPanel);
 	}
 
@@ -119,6 +119,9 @@ public class ListPanel extends JPanel {
 	}
 	
 	public void fillTable(ArrayList<Book> books){
+		tableModel = (DefaultTableModel) listTable.getModel();
+		tableModel.setRowCount(0);
+		listTable.repaint();
 		for (int i = 0; i < books.size(); i++) {
 			Book book = books.get(i);
 			this.addRow(book);
@@ -126,7 +129,6 @@ public class ListPanel extends JPanel {
 	}
 	
 	public void addRow(Book book) {
-		tableModel = (DefaultTableModel) listTable.getModel();
 		tableModel.addRow(new Object[] {""+book.getISBN(), book.getTittle(), ""+book.getSede(), ""+book.getVolume(), ""+book.getAuthor()});
 	}
 }

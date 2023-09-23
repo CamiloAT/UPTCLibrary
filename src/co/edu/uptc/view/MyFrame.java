@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 import co.edu.uptc.model.Book;
 
@@ -81,7 +82,10 @@ public class MyFrame extends JFrame {
 
 	public void fillSearchTable(ArrayList<Book> books) {
 		this.searchPanel.fillTable(books);
-		;
+	}
+	
+	public void addSearchRow(Book book) {
+		this.searchPanel.addRow(book);
 	}
 
 	public void fillListComboBox(ArrayList<String> sedes) {
