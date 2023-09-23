@@ -35,4 +35,8 @@ public class Author {
 		this.biography = bibliography;
 	}
 
+	@Override
+	public String toString() {
+		return name + " " + lastName;
+	}
 }
