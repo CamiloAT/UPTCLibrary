@@ -7,16 +7,19 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 public class Delete extends JPanel {
 	private JTextField isbnTextFIeld;
 	private JLabel confDeleted;
 	private JButton buttonDelete;
+	private JComboBox<String> comboSede;
 	
 	public Delete(ActionListener actionListener) {
 		setBackground(Color.WHITE);
@@ -63,11 +66,11 @@ public class Delete extends JPanel {
 		
 		confDeleted = new JLabel("");
 		confDeleted.setFont(new Font("Forte", Font.PLAIN, 17));
-		confDeleted.setBounds(301, 338, 242, 20);
+		confDeleted.setBounds(309, 386, 242, 20);
 		add(confDeleted);
 		
 		buttonDelete = new ButtonRound("Eliminar", new Color(1, 152, 205), (String) null, new Dimension(238, 36));
-		buttonDelete.setBounds(448, 277, 137, 32);
+		buttonDelete.setBounds(355, 326, 137, 32);
 		buttonDelete.setActionCommand("delete");
 		buttonDelete.addActionListener(actionListener);
 		add(buttonDelete);
@@ -76,11 +79,22 @@ public class Delete extends JPanel {
 		iconLibrary.setBounds(451, 352, 312, 304);
 		this.setImageLabel(iconLibrary, "resource/fondoLibros.jpeg");
 		add(iconLibrary);
+		
+		comboSede = new JComboBox();
+		comboSede.setBounds(451, 282, 153, 22);
+		add(comboSede);
 
 	}
 	
 	public String getISBN(){
 		return isbnTextFIeld.getText();
+	}
+	
+	public void fillComboBox(ArrayList<String> sedes) {
+		comboSede.removeAllItems();
+		for (int i = 0; i < sedes.size(); i++) {
+			comboSede.addItem(sedes.get(i));
+		}
 	}
 	
 	public void setConfirDelete(boolean confirmation) {

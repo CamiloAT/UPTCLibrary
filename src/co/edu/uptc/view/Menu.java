@@ -39,21 +39,21 @@ public class Menu extends JPanel {
 		buttonDelete.setBounds(147, 302, 200, 57);
 		add(buttonDelete);
 		
-		ButtonRound buttonAdd = new ButtonRound("Eliminar", new Color(1, 152, 205), (String) null, new Dimension(238, 36));
-		buttonAdd.setText("Añadir");
-		buttonAdd.setActionCommand("deleteMenu");
+		ButtonRound buttonAdd = new ButtonRound("Añadir", new Color(1, 152, 205), (String) null, new Dimension(238, 36));
+		buttonAdd.setActionCommand("addMenu");
+		buttonAdd.addActionListener(actionListener);
 		buttonAdd.setBounds(147, 234, 200, 57);
 		add(buttonAdd);
 		
-		ButtonRound buttonList = new ButtonRound("Eliminar", new Color(1, 152, 205), (String) null, new Dimension(238, 36));
-		buttonList.setText("Listar");
-		buttonList.setActionCommand("deleteMenu");
+		ButtonRound buttonList = new ButtonRound("Listar", new Color(1, 152, 205), (String) null, new Dimension(238, 36));
+		buttonList.setActionCommand("listMenu");
+		buttonList.addActionListener(actionListener);
 		buttonList.setBounds(147, 438, 200, 57);
 		add(buttonList);
 		
-		ButtonRound buttonSearch = new ButtonRound("Eliminar", new Color(1, 152, 205), (String) null, new Dimension(238, 36));
-		buttonSearch.setText("Buscar");
-		buttonSearch.setActionCommand("deleteMenu");
+		ButtonRound buttonSearch = new ButtonRound("Buscar", new Color(1, 152, 205), (String) null, new Dimension(238, 36));
+		buttonSearch.setActionCommand("searchMenu");
+		buttonSearch.addActionListener(actionListener);
 		buttonSearch.setBounds(147, 370, 200, 57);
 		add(buttonSearch);
 		
