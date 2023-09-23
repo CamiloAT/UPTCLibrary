@@ -39,6 +39,8 @@ public class PanelAddBook extends JPanel {
 	private JLabel lblBiblioteca;
 	private JComboBox<String> cbSedes;
 	private JTextArea descriptionTextArea;
+	private JLabel confAdd ;
+
 
 	public PanelAddBook(ActionListener listener) {
 		this.initComponents(listener);
@@ -198,6 +200,18 @@ public class PanelAddBook extends JPanel {
 		descriptionTextArea.setBorder(new LineBorder(new Color(1, 152, 205), 1, true));
 		descriptionTextArea.setLineWrap(true);
 		descriptionTextArea.setFont(new Font("Franklin Gothic Book", Font.PLAIN, 15));
+		
+		confAdd = new JLabel("");
+		confAdd.setFont(new Font("Forte", Font.PLAIN, 17));
+		confAdd.setBounds(318, 171, 222, 28);
+		panelInfoAuthor.add(confAdd);
+	}
+	public void setConfirAdd(boolean confirmation) {
+		if (confirmation) {
+			confAdd.setText("Se ha Añadido correctamente.");
+		} else {
+			confAdd.setText("Algo fallo. Vuelve a intentarlo.");
+		}
 	}
 
 	public String getSpaceNameBook() {

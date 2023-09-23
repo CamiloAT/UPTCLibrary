@@ -17,14 +17,18 @@ public class Presenter implements ActionListener{
 	public Presenter() {
 		frame = new MyFrame(this);
 		tree = new TreeAVL();
-		this.fillComboBoxes();
-		this.addBooks();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		this.fillComboBoxes();
+		this.addBooks();
 		String source = event.getActionCommand();
 		switch (source) {
+		case "addBook":
+			tree.insertar(new Book(frame.getSpaceNameBook(), Integer.parseInt(frame.getSpaceCode()), frame.getSpaceVolume(), frame.getSpaceEditorial(), frame.getPalabraCombo(), new Author(frame.getSpaceNameAuthor(), frame.getSpaceLastName(), frame.getDescriptionTextArea())));
+			frame.setConfirAdd(true);
+			break;
 		case "delete":
 			frame.setConfirDelete(true);
 			break;

@@ -99,7 +99,10 @@ public class MyFrame extends JFrame {
 	public void fillListTable(ArrayList<Book> books) {
 		this.listPanel.fillTable(books);
 	}
-
+	
+	public void setConfirAdd(boolean confirmation) {
+		panelAddBook.setConfirAdd(confirmation);
+	}
 	public String getSpaceNameBook() {
 		return panelAddBook.getSpaceNameBook();
 	}
@@ -120,6 +123,9 @@ public class MyFrame extends JFrame {
 	}
 	public void fillCbSedes(ArrayList<String> sedes) {
 		panelAddBook.fillCbSedes(sedes);
+	}
+	public String getPalabraCombo() {
+		return panelAddBook.getPalabraCombo();
 	}
 	public String getDescriptionTextArea() {
 		return panelAddBook.getDescriptionTextArea();
