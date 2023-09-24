@@ -117,6 +117,16 @@ public class TreeAVL {
 		return output;
 	}
 
+	public Book searchBookBySede(ArrayList<Book> listBooks, int ISBN){
+		Book bookAux = new Book();
+		for (Book book : listBooks) {
+			if (book.getISBN() == ISBN){
+				bookAux = book;
+			}
+		}
+		return bookAux; 
+	}
+
 	private Book searchOnAVL(NodeAVL nodoActual, int searchISBN) {
 		Book output = new Book();
 		if (nodoActual == null) {
