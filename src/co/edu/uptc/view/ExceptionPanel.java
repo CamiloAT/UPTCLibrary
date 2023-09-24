@@ -12,13 +12,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
-public class Exeption extends JDialog {
+public class ExceptionPanel extends JDialog {
 	private JLabel header;
 	private JLabel footer;
 	private JLabel message;
 	private JLabel iconError;
 	
-	public Exeption(String exeText) {
+	public ExceptionPanel(String exeText) {
 		this.setTitle("CAUTION");
 		this.setLayout(null);
 		this.setSize(450,170);
