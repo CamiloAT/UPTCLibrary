@@ -105,7 +105,7 @@ public class Delete extends JPanel {
 		if (confirmation) {
 			confDeleted.setText("Se ha eliminado correctamente.");
 		} else {
-			confDeleted.setText("Algo fallo. Vuelve a intentarlo.");
+			confDeleted.setText("No existe. Vuelva a intentarlo.");
 		}
 	}
 

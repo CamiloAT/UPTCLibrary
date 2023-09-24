@@ -56,8 +56,8 @@ public class MyFrame extends JFrame {
 		deletePanel.setConfirDelete(confirmation);
 	}
 
-	public int getIsbnDelete(){
-		return Integer.parseInt(deletePanel.getISBN());
+	public String getIsbnDelete(){
+		return deletePanel.getISBN();
 	}
 	
 	public void fillDeleteComboBox(ArrayList<String> sedes) {
