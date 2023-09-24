@@ -12,6 +12,7 @@ public class Presenter implements ActionListener {
 
 	private MyFrame frame;
 	private TreeAVL tree;
+	ExceptionPanel exceptionPanel;
 
 	public Presenter() {
 		frame = new MyFrame(this);
@@ -24,25 +25,10 @@ public class Presenter implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		String source = event.getActionCommand();
-		ExceptionPanel exceptionPanel;
+		
 		switch (source) {
 		case "addBook":
-			try {
-				if (Integer.parseInt(frame.getSpaceCode()) < 0)throw new Exception();
-				if(frame.getSpaceNameBook().isEmpty()|| frame.getSpaceCode().isEmpty()||frame.getSpaceVolume().isEmpty()||frame.getSpaceEditorial().isEmpty()||frame.getSpaceNameAuthor().isEmpty()||frame.getSpaceLastName().isEmpty()||frame.getDescriptionTextArea().isEmpty()) {throw new Exception();}
-				tree.insertar(new Book(frame.getSpaceNameBook(), Integer.parseInt(frame.getSpaceCode()),
-						frame.getSpaceVolume(), frame.getSpaceEditorial(), frame.getPalabraCombo(), new Author(
-								frame.getSpaceNameAuthor(), frame.getSpaceLastName(), frame.getDescriptionTextArea())));
-				frame.setConfirAdd(true);
-
-			} catch (NumberFormatException e) {
-				exceptionPanel = new ExceptionPanel("Ingresa un ISBN correcto");
-				frame.setConfirAdd(false);
-			} catch (Exception e) {
-//				e.printStackTrace();
-				exceptionPanel = new ExceptionPanel("Ingresa informacion correcta");
-				frame.setConfirAdd(false);
-			}
+			this.addBook();
 			break;
 		case "addMenu":
 			frame.showAdd();
@@ -96,23 +82,48 @@ public class Presenter implements ActionListener {
 				"Tunja, Campus: Central Jorge Palacios Preciado", new Author("Carlos", "Parra", "Se suicido")));
 	}
 
+	private void addBook(){
+		try {
+				if (Integer.parseInt(frame.getSpaceCode()) < 0)throw new Exception();
+				if(frame.getSpaceNameBook().isEmpty()|| frame.getSpaceCode().isEmpty()||frame.getSpaceVolume().isEmpty()||frame.getSpaceEditorial().isEmpty()||frame.getSpaceNameAuthor().isEmpty()||frame.getSpaceLastName().isEmpty()||frame.getDescriptionTextArea().isEmpty()) {throw new Exception();}
+				tree.insertar(new Book(frame.getSpaceNameBook(), Integer.parseInt(frame.getSpaceCode()),
+						frame.getSpaceVolume(), frame.getSpaceEditorial(), frame.getPalabraCombo(), new Author(
+								frame.getSpaceNameAuthor(), frame.getSpaceLastName(), frame.getDescriptionTextArea())));
+				frame.setConfirAdd(true);
+
+			} catch (NumberFormatException e) {
+				exceptionPanel = new ExceptionPanel("Ingresa un ISBN correcto");
+				frame.setConfirAdd(false);
+			} catch (Exception e) {
+				exceptionPanel = new ExceptionPanel("Ingresa informacion correcta");
+				frame.setConfirAdd(false);
+			}
+	}
+
 	private void deleteBook() {
-		if (frame.getWoldComboDelete().equals("Ninguno") & tree.searchByISBN(frame.getIsbnDelete()) != null) {
-			tree.delete(tree.searchByISBN(frame.getIsbnDelete()));
+		try {
+			if (Integer.parseInt(frame.getIsbnDelete()) < 0)throw new Exception();
+			int isbnCombo = Integer.parseInt(frame.getIsbnDelete());
+			if(frame.getWoldComboDelete().equals("Ninguno") & tree.searchByISBN(isbnCombo) != null){
+			tree.delete(tree.searchByISBN(isbnCombo));
 			frame.setConfirDelete(true);
 
-		} else if ((!frame.getWoldComboDelete().equals("Ninguno"))
-				& (tree.searchBookBySede(tree.searchBySede(frame.getWoldComboDelete()), frame.getIsbnDelete())
-						.getISBN() == frame.getIsbnDelete())) {
-			System.out.println(tree.searchBookBySede(tree.searchBySede(frame.getWoldComboDelete()),
-					frame.getIsbnDelete()) != null);
-			tree.delete(tree.searchBookBySede(tree.searchBySede(frame.getWoldComboDelete()), frame.getIsbnDelete()));
-			frame.setConfirDelete(true);
+			} else if((!frame.getWoldComboDelete().equals("Ninguno")) & (tree.searchBookBySede(tree.searchBySede(frame.getWoldComboDelete()), isbnCombo).getISBN() == isbnCombo)){
+				System.out.println(tree.searchBookBySede(tree.searchBySede(frame.getWoldComboDelete()), isbnCombo) != null);
+				tree.delete(tree.searchBookBySede(tree.searchBySede(frame.getWoldComboDelete()), isbnCombo));
+				frame.setConfirDelete(true);
 
-		} else {
-			frame.setConfirDelete(false);
+			} else {
+				frame.setConfirDelete(false);
+			}
+			fillComboBoxes();
+		} catch (NumberFormatException e) {
+			exceptionPanel = new ExceptionPanel("Upss. Ingresa un número valido (entero).");
+			frame.setConfirAdd(false);
+		} catch (Exception e) {
+			exceptionPanel = new ExceptionPanel("Upss. Ingresa un número valido (entero).");
+			frame.setConfirAdd(false);
 		}
-		fillComboBoxes();
 	}
 
 	private void searchBook() {
