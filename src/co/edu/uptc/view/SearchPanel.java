@@ -154,7 +154,13 @@ public class SearchPanel extends JPanel {
 		}
 	}
 	
-	public void addRow(Book book) {
+	public void clearTable() {
+		tableModel = (DefaultTableModel) searchTable.getModel();
+		tableModel.setRowCount(0);
+		searchTable.repaint();
+	}
+	
+	private void addRow(Book book) {
 		tableModel.addRow(new Object[] {""+book.getISBN(), book.getTittle(), ""+book.getSede(), ""+book.getVolume(), ""+book.getAuthor()});
 	}
 }
