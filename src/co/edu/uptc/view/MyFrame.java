@@ -87,11 +87,11 @@ public class MyFrame extends JFrame {
 	public void fillSearchTable(ArrayList<Book> books) {
 		this.searchPanel.fillTable(books);
 	}
-	
-	public void addSearchRow(Book book) {
-		this.searchPanel.addRow(book);
-	}
 
+	public void clearSearchTable() {
+		this.searchPanel.clearTable();;
+	}
+	
 	public void fillListComboBox(ArrayList<String> sedes) {
 		this.listPanel.fillComboBox(sedes);
 	}
