@@ -64,6 +64,10 @@ public class MyFrame extends JFrame {
 		this.deletePanel.fillComboBox(sedes);
 	}
 
+	public String getWoldComboDelete() {
+		return deletePanel.getWoldComboDelete();
+	}
+
 	public String getNameToSearch() {
 		return this.searchPanel.getNameToSearch();
 	}

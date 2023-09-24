@@ -17,20 +17,17 @@ public class Presenter implements ActionListener{
 	public Presenter() {
 		frame = new MyFrame(this);
 		tree = new TreeAVL();
+		this.addBooks();
+		this.fillComboBoxes();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		this.fillComboBoxes();
-		this.addBooks();
 		String source = event.getActionCommand();
 		switch (source) {
 		case "addBook":
 			tree.insertar(new Book(frame.getSpaceNameBook(), Integer.parseInt(frame.getSpaceCode()), frame.getSpaceVolume(), frame.getSpaceEditorial(), frame.getPalabraCombo(), new Author(frame.getSpaceNameAuthor(), frame.getSpaceLastName(), frame.getDescriptionTextArea())));
 			frame.setConfirAdd(true);
-			break;
-		case "delete":
-			frame.setConfirDelete(true);
 			break;
 
 		case "addMenu":
@@ -51,6 +48,10 @@ public class Presenter implements ActionListener{
 
 		case "back":
 			frame.showMenu();
+			break;
+
+		case "delete":
+			this.deleteBook();
 			break;
 			
 		case "searchBook":
@@ -77,6 +78,22 @@ public class Presenter implements ActionListener{
 		tree.insertar(new Book("Aerografo", 4, "Volumen 4.5", "Ramiriqui's fundation", "Tunja, Campus: Central Jorge Palacios Preciado", new Author("Carlos", "Parra", "Se suicido")));
 	}
 	
+	private void deleteBook(){
+		if(frame.getWoldComboDelete().equals("Ninguno") & tree.searchByISBN(frame.getIsbnDelete()) != null){
+			tree.delete(tree.searchByISBN(frame.getIsbnDelete()));
+			frame.setConfirDelete(true);
+
+		} else if((!frame.getWoldComboDelete().equals("Ninguno")) & (tree.searchBookBySede(tree.searchBySede(frame.getWoldComboDelete()), frame.getIsbnDelete()).getISBN() == frame.getIsbnDelete())){
+			System.out.println(tree.searchBookBySede(tree.searchBySede(frame.getWoldComboDelete()), frame.getIsbnDelete()) != null);
+			tree.delete(tree.searchBookBySede(tree.searchBySede(frame.getWoldComboDelete()), frame.getIsbnDelete()));
+			frame.setConfirDelete(true);
+
+		} else {
+			frame.setConfirDelete(false);
+		}
+			fillComboBoxes();
+	}
+
 	private void searchBook() {
 		if(!frame.getIsbnToSearch().equals("")) {
 			ArrayList<Book> temporal = new ArrayList<>();
